@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Stencil Component Starter</title>
+
+  <script type="module" src="/build/stencil-test-component.esm.js"></script>
+  <script nomodule src="/build/stencil-test-component.js"></script>
+</head>
+
+<body>
+  <my-rating max-value=5 value=2></my-rating>
+  <script>
+    window.onload = function () {
+      const myRatingComponent = document.querySelector('my-rating');
+      setTimeout(() => {
+        // myRatingComponent.value = 4;
+        myRatingComponent.setAttribute('value', 4)
+        console.log('set value')
+        myRatingComponent.getValue({ maxValue: 10, value: 5 }).then(value => {
+          console.log('get value', value)
+        })
+      }, 2000)
+
+      myRatingComponent.addEventListener('ratingChange', ({ detail }) => {
+        console.log('rating changed', detail)
+        alert(`rating change ${detail.value}`)
+      })
+    };
+
+  </script>
+</body>
+
+</html>
