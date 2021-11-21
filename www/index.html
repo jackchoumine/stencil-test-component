@@ -1,39 +1,10 @@
-<!doctype html>
-<html dir="ltr" lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-  <title>Stencil Component Starter</title>
-  <script type="module" src="/build/stencil-test-component.esm.js" data-stencil></script>
-  <script nomodule="" src="/build/stencil-test-component.js" data-stencil></script>
-</head>
-
-<body>
-  <my-rating max-value="5" value="2"></my-rating>
-  <button>修改person</button>
-  <script>
+<!doctype html><html dir="ltr" lang="en"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"> <title>Stencil Component Starter</title> <link rel="modulepreload" href="/build/p-3acafe0e.js"><script type="module" src="/build/p-3acafe0e.js" data-stencil data-resources-url="/build/" data-stencil-namespace="stencil-test-component"></script> <script nomodule="" src="/build/stencil-test-component.js" data-stencil></script> </head> <body> <my-rating max-value="5" value="2"></my-rating> <script>
     window.onload = function () {
       const myRatingComponent = document.querySelector('my-rating');
       // NOTE 无效
       myRatingComponent.setAttribute('person', { name: 'John', age: 30 })
-
-      myRatingComponent.methodFromParent = (value, person, maxValue) => {
-        console.log(value, person, maxValue)
-        return Math.min(value + Math.random(), person.age || 0, maxValue)
-      }
-
-      document.querySelector('button').addEventListener('click', () => {
-        myRatingComponent.setPerson({ name: 'John', age: 30 + Math.random() * 10 })
-        // NOTE 不能传递 render 函数
-        // myRatingComponent.renderH1 = function (h, person) {
-        //   console.log(h)
-        //   return h('h1', `years old`)
-        // }
-
-        myRatingComponent.setPersonArray([{ name: 'Stencil', age: 30 + Math.random() * 10 }]);
-      })
-
+      // myRatingComponent.setPerson({ name: 'John', age: 30 });
+      myRatingComponent.setPersonArray([{ name: 'John', age: 30 }]);
       setTimeout(() => {
         // myRatingComponent.value = 4;
         myRatingComponent.setAttribute('value', 4)
@@ -48,17 +19,4 @@
       })
     };
 
-  </script>
-  <script>
-    if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-      // auto-unregister service worker during dev mode
-      navigator.serviceWorker.getRegistration().then(function (registration) {
-        if (registration) {
-          registration.unregister().then(function () { location.reload(true) });
-        }
-      });
-    }
-  </script>
-</body>
-
-</html>
+  </script> </body></html>
