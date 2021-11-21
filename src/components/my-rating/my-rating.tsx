@@ -2,23 +2,52 @@
  * @Description :
  * @Date        : 2021-11-21 02:31:00 +0800
  * @Author      : JackChou
- * @LastEditTime: 2021-11-21 03:21:15 +0800
+ * @LastEditTime: 2021-11-22 03:14:58 +0800
  * @LastEditors : JackChou
  */
 
 import { Component, h, Prop, State, Watch, Event, EventEmitter, Method } from '@stencil/core';
-
+export type Person = { name: string; age?: number };
 @Component({
   tag: 'my-rating',
   styleUrl: 'my-rating.css',
   shadow: true,
 })
 export class MyRating {
+  constructor() {
+    console.log('this.value');
+    console.log(this.value);
+    console.log(typeof this.value);
+    console.log('this.maxValue');
+    console.log(this.maxValue);
+    console.log('this.isShow');
+    console.log(this.isShow);
+    console.log(typeof this.isShow);
+    console.log('this.person');
+    console.log(this.person);
+    console.log(typeof this.person);
+  }
   @Prop({ mutable: true }) value: number = 0;
   @Prop() maxValue: number = 5;
-
-  @Event() ratingChange: EventEmitter;
-
+  @Prop() isShow: boolean = false;
+  // NOTE 不能接收对象
+  @Prop() person: object = {};
+  // NOTE 设置可变的，直接调用函数修改它
+  @Prop({ mutable: true }) personArray: Person[] = [{ name: 'John' }];
+  @Event()
+  ratingChange: EventEmitter;
+  @Method()
+  async setPerson(params: any) {
+    this.person = params;
+    // this.maxValue = params.maxValue;
+    // this.createStarList();
+    return true;
+  }
+  @Method()
+  async setPersonArray(persons: []) {
+    this.personArray = persons;
+    return true;
+  }
   @Method()
   async getValue(params: any) {
     console.log(params);
@@ -72,6 +101,15 @@ export class MyRating {
   }
 
   render() {
-    return <div>{this.starList}</div>;
+    const span = this.isShow ? <span>isShow:{this.isShow.toString()}</span> : null;
+    return (
+      <div>
+        {this.starList}
+        <hr />
+        {span}
+        <p>person:{JSON.stringify(this.person)}</p>
+        <p>personArray:{JSON.stringify(this.personArray)}</p>
+      </div>
+    );
   }
 }

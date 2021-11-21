@@ -7,10 +7,13 @@
 
 ## Properties
 
-| Property   | Attribute   | Description | Type     | Default |
-| ---------- | ----------- | ----------- | -------- | ------- |
-| `maxValue` | `max-value` |             | `number` | `5`     |
-| `value`    | `value`     |             | `number` | `0`     |
+| Property      | Attribute   | Description | Type       | Default              |
+| ------------- | ----------- | ----------- | ---------- | -------------------- |
+| `isShow`      | `is-show`   |             | `boolean`  | `false`              |
+| `maxValue`    | `max-value` |             | `number`   | `5`                  |
+| `person`      | --          |             | `object`   | `{}`                 |
+| `personArray` | --          |             | `Person[]` | `[{ name: 'John' }]` |
+| `value`       | `value`     |             | `number`   | `0`                  |
 
 
 ## Events
@@ -29,6 +32,26 @@
 #### Returns
 
 Type: `Promise<number>`
+
+
+
+### `setPerson(params: any) => Promise<boolean>`
+
+
+
+#### Returns
+
+Type: `Promise<boolean>`
+
+
+
+### `setPersonArray(persons: []) => Promise<boolean>`
+
+
+
+#### Returns
+
+Type: `Promise<boolean>`
 
 
 
