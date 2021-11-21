@@ -2,12 +2,14 @@
  * @Description :
  * @Date        : 2021-11-21 02:31:00 +0800
  * @Author      : JackChou
- * @LastEditTime: 2021-11-22 03:42:58 +0800
+ * @LastEditTime: 2021-11-22 05:49:51 +0800
  * @LastEditors : JackChou
  */
 
-import { Component, h, Prop, State, Watch, Event, EventEmitter, Method } from '@stencil/core';
+import { Component, h, Prop, State, Watch, Event, EventEmitter, Method, VNode } from '@stencil/core';
 export type Person = { name: string; age?: number };
+export type RenderH1 = (h: any, person: Person) => VNode;
+export type MethodFromParent = (value: number, person: Person, maxValue: number) => number;
 @Component({
   tag: 'my-rating',
   styleUrl: 'my-rating.css',
@@ -28,12 +30,14 @@ export class MyRating {
     console.log(typeof this.person);
   }
   @Prop({ mutable: true }) value: number = 0;
-  @Prop() maxValue: number = 5;
+  @Prop({ mutable: true }) maxValue: number = 5;
   @Prop() isShow: boolean = false;
   // NOTE 不能接收对象
   @Prop() person: object = {};
   // NOTE 设置可变的，直接调用函数修改它
   @Prop({ mutable: true }) personArray: Person[] = [{ name: 'John' }];
+  @Prop() renderH1: RenderH1;
+  @Prop() methodFromParent: MethodFromParent;
 
   @Event()
   ratingChange: EventEmitter;
@@ -104,15 +108,21 @@ export class MyRating {
     this.starList = starList;
   }
 
+  onClick() {
+    this.value = this.methodFromParent && this.methodFromParent(this.value, this.personArray[0], this.maxValue);
+  }
+
   render() {
     const span = this.isShow ? <span>isShow:{this.isShow.toString()}</span> : null;
     return (
       <div>
+        {this.renderH1 && this.renderH1(h, this.personArray[0])}
         {this.starList}
         <hr />
         {span}
         <p>person:{JSON.stringify(this.person)}</p>
         <p>personArray:{JSON.stringify(this.personArray)}</p>
+        <button onClick={() => this.onClick()}>hello 调用标签传入的方法</button>
       </div>
     );
   }

@@ -18,8 +18,19 @@
       // NOTE 无效
       myRatingComponent.setAttribute('person', { name: 'John', age: 30 })
 
+      myRatingComponent.methodFromParent = (value, person, maxValue) => {
+        console.log(value, person, maxValue)
+        return Math.min(value + Math.random(), person.age || 0, maxValue)
+      }
+
       document.querySelector('button').addEventListener('click', () => {
         myRatingComponent.setPerson({ name: 'John', age: 30 + Math.random() * 10 })
+        // NOTE 不能传递 render 函数
+        // myRatingComponent.renderH1 = function (h, person) {
+        //   console.log(h)
+        //   return h('h1', `years old`)
+        // }
+
         myRatingComponent.setPersonArray([{ name: 'Stencil', age: 30 + Math.random() * 10 }]);
       })
 

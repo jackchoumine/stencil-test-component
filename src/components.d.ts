@@ -5,14 +5,16 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { Person } from "./components/my-rating/my-rating";
+import { MethodFromParent, Person, RenderH1 } from "./components/my-rating/my-rating";
 export namespace Components {
     interface MyRating {
         "getValue": (params: any) => Promise<number>;
         "isShow": boolean;
         "maxValue": number;
+        "methodFromParent": MethodFromParent;
         "person": object;
         "personArray": Person[];
+        "renderH1": RenderH1;
         "setPerson": (params: any) => Promise<boolean>;
         "setPersonArray": (persons: []) => Promise<boolean>;
         "value": number;
@@ -33,9 +35,11 @@ declare namespace LocalJSX {
     interface MyRating {
         "isShow"?: boolean;
         "maxValue"?: number;
+        "methodFromParent"?: MethodFromParent;
         "onRatingChange"?: (event: CustomEvent<any>) => void;
         "person"?: object;
         "personArray"?: Person[];
+        "renderH1"?: RenderH1;
         "value"?: number;
     }
     interface IntrinsicElements {
