@@ -15,6 +15,10 @@
   <script>
     window.onload = function () {
       const myRatingComponent = document.querySelector('my-rating');
+      // NOTE 无效
+      myRatingComponent.setAttribute('person', { name: 'John', age: 30 })
+      // myRatingComponent.setPerson({ name: 'John', age: 30 });
+      myRatingComponent.setPersonArray([{ name: 'John', age: 30 }]);
       setTimeout(() => {
         // myRatingComponent.value = 4;
         myRatingComponent.setAttribute('value', 4)
@@ -26,7 +30,6 @@
 
       myRatingComponent.addEventListener('ratingChange', ({ detail }) => {
         console.log('rating changed', detail)
-        alert(`rating change ${detail.value}`)
       })
     };
 
