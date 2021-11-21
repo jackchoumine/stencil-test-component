@@ -2,7 +2,7 @@
  * @Description :
  * @Date        : 2021-11-21 02:31:00 +0800
  * @Author      : JackChou
- * @LastEditTime: 2021-11-22 03:14:58 +0800
+ * @LastEditTime: 2021-11-22 03:40:55 +0800
  * @LastEditors : JackChou
  */
 
@@ -34,8 +34,12 @@ export class MyRating {
   @Prop() person: object = {};
   // NOTE 设置可变的，直接调用函数修改它
   @Prop({ mutable: true }) personArray: Person[] = [{ name: 'John' }];
+
   @Event()
   ratingChange: EventEmitter;
+  // @Event()
+  // rating-change: EventEmitter;
+
   @Method()
   async setPerson(params: any) {
     this.person = params;
