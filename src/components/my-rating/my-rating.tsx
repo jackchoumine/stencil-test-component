@@ -2,7 +2,7 @@
  * @Description :
  * @Date        : 2021-11-21 02:31:00 +0800
  * @Author      : JackChou
- * @LastEditTime: 2021-11-22 03:40:55 +0800
+ * @LastEditTime: 2021-11-22 03:42:58 +0800
  * @LastEditors : JackChou
  */
 
@@ -37,9 +37,9 @@ export class MyRating {
 
   @Event()
   ratingChange: EventEmitter;
+  // FIXME 不支持这种写法
   // @Event()
-  // rating-change: EventEmitter;
-
+  // 'rating-change': EventEmitter;
   @Method()
   async setPerson(params: any) {
     this.person = params;

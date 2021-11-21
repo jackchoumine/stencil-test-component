@@ -1,5 +1,6 @@
 dist/
-www/
+www/build
+www/host.config.json
 loader/
 .history
 *~
