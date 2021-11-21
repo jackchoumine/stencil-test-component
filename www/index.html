@@ -11,13 +11,18 @@
 
 <body>
   <my-rating max-value="5" value="2"></my-rating>
+  <button>修改person</button>
   <script>
     window.onload = function () {
       const myRatingComponent = document.querySelector('my-rating');
       // NOTE 无效
       myRatingComponent.setAttribute('person', { name: 'John', age: 30 })
-      myRatingComponent.setPerson({ name: 'John', age: 30 });
-      myRatingComponent.setPersonArray([{ name: 'John', age: 30 }]);
+
+      document.querySelector('button').addEventListener('click', () => {
+        myRatingComponent.setPerson({ name: 'John', age: 30 + Math.random() * 10 })
+        myRatingComponent.setPersonArray([{ name: 'Stencil', age: 30 + Math.random() * 10 }]);
+      })
+
       setTimeout(() => {
         // myRatingComponent.value = 4;
         myRatingComponent.setAttribute('value', 4)
