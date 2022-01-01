@@ -2,7 +2,7 @@
  * @Description :
  * @Date        : 2021-11-21 02:31:00 +0800
  * @Author      : JackChou
- * @LastEditTime: 2021-11-22 05:49:51 +0800
+ * @LastEditTime: 2022-01-02 05:28:47 +0800
  * @LastEditors : JackChou
  */
 
@@ -31,10 +31,8 @@ export class MyRating {
   }
   @Prop({ mutable: true }) value: number = 0;
   @Prop({ mutable: true }) maxValue: number = 5;
-  @Prop() isShow: boolean = false;
-  // NOTE 不能接收对象
+  @Prop({ reflect: true, attribute: 'show' }) isShow: boolean = false;
   @Prop() person: object = {};
-  // NOTE 设置可变的，直接调用函数修改它
   @Prop({ mutable: true }) personArray: Person[] = [{ name: 'John' }];
   @Prop() renderH1: RenderH1;
   @Prop() methodFromParent: MethodFromParent;
@@ -84,6 +82,7 @@ export class MyRating {
 
   setValue(newValue) {
     this.value = newValue;
+    this.isShow = true;
     this.createStarList();
   }
 
