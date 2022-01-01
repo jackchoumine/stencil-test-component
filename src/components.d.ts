@@ -7,6 +7,12 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MethodFromParent, Person, RenderH1 } from "./components/my-rating/my-rating";
 export namespace Components {
+    interface MyDropdown {
+        "isToggle": boolean;
+        "myTitle": string;
+    }
+    interface MyName {
+    }
     interface MyRating {
         "getValue": (params: any) => Promise<number>;
         "isShow": boolean;
@@ -21,6 +27,18 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLMyDropdownElement extends Components.MyDropdown, HTMLStencilElement {
+    }
+    var HTMLMyDropdownElement: {
+        prototype: HTMLMyDropdownElement;
+        new (): HTMLMyDropdownElement;
+    };
+    interface HTMLMyNameElement extends Components.MyName, HTMLStencilElement {
+    }
+    var HTMLMyNameElement: {
+        prototype: HTMLMyNameElement;
+        new (): HTMLMyNameElement;
+    };
     interface HTMLMyRatingElement extends Components.MyRating, HTMLStencilElement {
     }
     var HTMLMyRatingElement: {
@@ -28,10 +46,19 @@ declare global {
         new (): HTMLMyRatingElement;
     };
     interface HTMLElementTagNameMap {
+        "my-dropdown": HTMLMyDropdownElement;
+        "my-name": HTMLMyNameElement;
         "my-rating": HTMLMyRatingElement;
     }
 }
 declare namespace LocalJSX {
+    interface MyDropdown {
+        "isToggle"?: boolean;
+        "myTitle"?: string;
+        "onToggle"?: (event: CustomEvent<any>) => void;
+    }
+    interface MyName {
+    }
     interface MyRating {
         "isShow"?: boolean;
         "maxValue"?: number;
@@ -43,6 +70,8 @@ declare namespace LocalJSX {
         "value"?: number;
     }
     interface IntrinsicElements {
+        "my-dropdown": MyDropdown;
+        "my-name": MyName;
         "my-rating": MyRating;
     }
 }
@@ -50,6 +79,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "my-dropdown": LocalJSX.MyDropdown & JSXBase.HTMLAttributes<HTMLMyDropdownElement>;
+            "my-name": LocalJSX.MyName & JSXBase.HTMLAttributes<HTMLMyNameElement>;
             "my-rating": LocalJSX.MyRating & JSXBase.HTMLAttributes<HTMLMyRatingElement>;
         }
     }

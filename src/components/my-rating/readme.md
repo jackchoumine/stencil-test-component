@@ -9,7 +9,7 @@
 
 | Property           | Attribute   | Description | Type                                                          | Default              |
 | ------------------ | ----------- | ----------- | ------------------------------------------------------------- | -------------------- |
-| `isShow`           | `is-show`   |             | `boolean`                                                     | `false`              |
+| `isShow`           | `show`      |             | `boolean`                                                     | `false`              |
 | `maxValue`         | `max-value` |             | `number`                                                      | `5`                  |
 | `methodFromParent` | --          |             | `(value: number, person: Person, maxValue: number) => number` | `undefined`          |
 | `person`           | --          |             | `object`                                                      | `{}`                 |
