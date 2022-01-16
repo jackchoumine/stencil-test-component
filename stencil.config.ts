@@ -5,16 +5,15 @@ export const config: Config = {
   bundles: [
     {
       components: ['my-name'],
-      // components: ['my-dropdown'],
+    },
+    {
+      components: ['my-dropdown'],
     },
   ],
   outputTargets: [
     {
       type: 'dist',
       esmLoaderPath: '../loader',
-    },
-    {
-      type: 'dist-custom-elements-bundle',
     },
     {
       type: 'docs-readme',
